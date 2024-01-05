@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadlineService", "DeadlineService.csproj", "{41518669-7063-4529-BA99-1414FC7997AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPS", "SPS", "{D21641A5-D64D-474D-9402-C7BB1D7AC0D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{3E1E740F-E20F-4DF1-96FD-B2E3A6BDA2C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{8E9ED2E0-5FBF-4759-8E6C-D8F959D9453D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{DB4B229E-3792-4F7E-B5CB-C52B2F7ECE5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41518669-7063-4529-BA99-1414FC7997AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41518669-7063-4529-BA99-1414FC7997AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41518669-7063-4529-BA99-1414FC7997AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41518669-7063-4529-BA99-1414FC7997AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41518669-7063-4529-BA99-1414FC7997AE} = {8E9ED2E0-5FBF-4759-8E6C-D8F959D9453D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA9CE6CD-E3D8-41A0-B40C-C1664EEE8A72}
+	EndGlobalSection
+EndGlobal
