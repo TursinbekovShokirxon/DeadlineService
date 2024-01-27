@@ -1,4 +1,9 @@
 
+using Identity.Domain.Entitys;
+using Identity.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace Identity.API
 {
 	public class Program
@@ -13,6 +18,36 @@ namespace Identity.API
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+
+			builder.Services.AddDbContext<IdentityApplicationDbContext>(opt =>
+			{
+				opt.UseNpgsql(builder.Configuration.GetConnectionString("IdentityDatabase"));
+			});
+
+			builder.Services.AddAuthorization();
+
+			builder.Services.AddIdentity<ApplicationUser, Role>(options =>
+			{
+				// Опции подтверждения аккаунта
+				options.SignIn.RequireConfirmedAccount = false; // Требовать подтверждение аккаунта
+
+				// Опции пароля
+				options.Password.RequireDigit = true;         // Требовать хотя бы одну цифру
+				options.Password.RequireLowercase = true;     // Требовать хотя бы одну строчную букву
+				options.Password.RequireUppercase = true;     // Требовать хотя бы одну заглавную букву
+				options.Password.RequireNonAlphanumeric = false; // Требовать хотя бы один спецсимвол
+				options.Password.RequiredLength = 8;           // Минимальная длина пароля
+
+				// Опции блокировки
+				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); // Время блокировки после неудачных попыток
+				options.Lockout.MaxFailedAccessAttempts = 5;  // Максимальное количество неудачных попыток
+
+				// Опции пользовательских требований
+				options.User.RequireUniqueEmail = true;       // Требовать уникальный email
+
+			})
+			.AddEntityFrameworkStores<IdentityApplicationDbContext>()
+			.AddDefaultTokenProviders();
 
 			var app = builder.Build();
 
