@@ -1,5 +1,8 @@
 
+using Identity.Application;
+using Identity.Application.CustomeValidate;
 using Identity.Domain.Entitys;
+using Identity.Infrastructure;
 using Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +22,9 @@ namespace Identity.API
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			builder.Services.AddDbContext<IdentityApplicationDbContext>(opt =>
-			{
-				opt.UseNpgsql(builder.Configuration.GetConnectionString("IdentityDatabase"));
-			});
+			builder.Services.AddApplicationServices(builder.Configuration);
 
-			builder.Services.AddAuthorization();
+			builder.Services.AddInfrastructureServices(builder.Configuration);
 
 			builder.Services.AddIdentity<ApplicationUser, Role>(options =>
 			{
@@ -47,7 +47,8 @@ namespace Identity.API
 
 			})
 			.AddEntityFrameworkStores<IdentityApplicationDbContext>()
-			.AddDefaultTokenProviders();
+			.AddDefaultTokenProviders()
+			.AddUserValidator<UniqueUsernameValidator<ApplicationUser>>();
 
 			var app = builder.Build();
 
@@ -60,8 +61,8 @@ namespace Identity.API
 
 			app.UseHttpsRedirection();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
-
 
 			app.MapControllers();
 
